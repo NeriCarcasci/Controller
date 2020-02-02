@@ -3,7 +3,8 @@ import sys
 
 
 class Client():
-    
+        protocol_key = "-"  
+
         def __init__(self):
             self.port = "5556"
             self.mode = "single"
@@ -32,13 +33,25 @@ class Client():
                 message = self.socket.recv()
                 print ("Received reply ", request, "[", message, "]")
 
+        def protocol_implementer(self, msg, type, status):
+            message = type + self.protocol_key + msg + self.protocol_key + str(status)
+            #message = message.encode('utf-8')
+            self.Msg_snd_rcv(message)
+
+        def decryptor(self, msg):
+            decoded_message = str(msg, 'utf-8')
+            list = decoded_message.split(self.protocol_key)
+            if len(list) == 3:
+                self.type = list[0]
+                self.message = list[1]
+                self.status = list[2]
+
         def Msg_snd_rcv(self, message):
-            message = message.encode('utf-8')
             print("Sending request %s …" % self.Servers.get("Server1"))
-            self.socket.send(message)
+            self.socket.send_string(message)
             answer = self.socket.recv()
-            print("Received reply %s [ %s ]" % (self.Servers.get("Server1"), answer))
-            return answer
+            self.decryptor(answer)
+            print("type:" + self.type + "   message:" + self.message + "   status:" + self.status)
 
 
 

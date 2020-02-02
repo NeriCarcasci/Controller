@@ -5,7 +5,7 @@
     <ProjectGuid>edbc2689-24b5-4510-9a67-ac5bb39307c4</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>Server.py</StartupFile>
+    <StartupFile>Serv_con.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,6 +22,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Serv_con.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Server.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
