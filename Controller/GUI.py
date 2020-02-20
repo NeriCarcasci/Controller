@@ -19,9 +19,9 @@ class CntGUI():
         self.back.pack(fill=tk.BOTH, expand=1) 
         self.info = tk.Label(master=self.back, text='Controller Client', bg="white", fg="black")
         self.info.pack(fill=tk.X, padx=0, pady = 0)
-        self.option1 = tk.Button(master=self.back, text='Option1', command=controller_class.Option1)
+        self.option1 = tk.Button(master=self.back, text='froward', command=controller_class.forward)
         self.option1.pack(pady=15)
-        self.option2 = tk.Button(master=self.back, text='Option2', command=controller_class.Option2)
+        self.option2 = tk.Button(master=self.back, text='backward', command=controller_class.backward)
         self.option2.pack(pady=15)
 
         

@@ -9,15 +9,9 @@ class controller():
     def action1(self):
         print("Message for Action1 received!!")
 
-
-    def configurer(self):
-        config = configparser.ConfigParser()                                     
-        config.read('~/Documents/Coding/Python/Top_portfolio_projects/Controller/Server/Data.ini')
-        print(config['COMMON']['USERNAME'])
-
     def decryptor(self, msg):
-        decoded = str(msg, 'utf-8')
-        list = decoded.split(self.Server_class.protocol_key)
+        decoded = msg.decode("utf-8", "ignore")
+        list = msg.split(self.Server_class.protocol_key)
         if len(list) == 3:
             self.type = list[0]
             self.message = list[1]

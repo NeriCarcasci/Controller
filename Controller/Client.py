@@ -7,21 +7,21 @@ class Client():
 
         def __init__(self):
             self.port = "5556"
-            self.mode = "single"
+            self.mode = "local"
             self.Servers = {
                 "Server1":"ONE",
                 "port1":"5556",
 
                 "Server2":"TWO",
-                "port2":"5555",
+                "port2":"5556",
                 }
 
             #Connecting to servers
             context = zmq.Context()
             print ("Connecting to server...")
             self.socket = context.socket(zmq.REQ)
-            self.socket.connect ("tcp://localhost:%s" % self.Servers.get("port1"))
-            if self.mode == "multi":
+            self.socket.connect ("tcp://192.168.30.201:%s" % self.Servers.get("port1"))
+            if self.mode == "local":
                 self.socket.connect ("tcp://localhost:%s" % self.Servers.get("port2"))
 
         def Con_try(self):
@@ -37,6 +37,9 @@ class Client():
             message = type + self.protocol_key + msg + self.protocol_key + str(status)
             #message = message.encode('utf-8')
             self.Msg_snd_rcv(message)
+
+        def returner(self):
+            return self.type, self.message, self.status
 
         def decryptor(self, msg):
             decoded_message = str(msg, 'utf-8')
